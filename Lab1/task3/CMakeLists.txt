@@ -1,0 +1,1 @@
+add_executable (Lab1_task3 task3.c)

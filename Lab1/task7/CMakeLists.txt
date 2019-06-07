@@ -1,0 +1,1 @@
+add_executable (Lab1_task7 task7_main.c task7_func.c)
