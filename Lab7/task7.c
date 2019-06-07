@@ -97,7 +97,6 @@ void printSemester(const struct Semester *semester)
     {
         printSubject(&semester->subjects[subId]);
     }
-    printf("%s | %s | %s | %s");
 }
 
 int main()

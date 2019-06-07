@@ -1,8 +1,10 @@
 #include <stdio.h>
-#include "task6_func.c"
+
+void f();
+extern double x, result;
 
 void main(){
-	x=5;
+	x = 5;
 	f();
 	printf("x =  %.4lf\nf(x) = %.4lf", x, result);
 

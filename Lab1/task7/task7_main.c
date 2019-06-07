@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "func.h"
-#include "task7_func.c"
 
 void main(){
 	x=5;

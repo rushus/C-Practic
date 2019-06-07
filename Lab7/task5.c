@@ -3,11 +3,11 @@
 
 char *strcat(const char *first, const char *second)
 {
-	char *dest = (char*) malloc(sizeof(first)+sizeof(second));
+	int n = strlen(first) + strlen(second) + 1;
+	char *dest = (char*) malloc(n);
 	char *d = dest;
 	const char *f = first;
 	const char *s = second;
-	int n = sizeof(dest);
 	int dlen;
 
 	while (*f != '\0')
@@ -15,14 +15,6 @@ char *strcat(const char *first, const char *second)
 	    *d++ = *f;
 		f++;
 	}
-
-	if (n == 0) {
-		if (sizeof(dest) != 0)
-			*d = '\0';
-	}
-
-	while (n-- != 0 && *d != '\0')
-		d++;
 
 	while (*s != '\0')
 	{

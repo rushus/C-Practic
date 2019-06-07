@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
-#include "task5_func.c"
+
+double f(double x);
 
 void main(){
 	double x = 5;

@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <func.h>
+#include "func.h"
 
 void main(){
 	x=5;

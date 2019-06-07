@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
+void f();
 double x;
 double result;
 
