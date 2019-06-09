@@ -50,7 +50,7 @@ void delete(char *str, const char *substr)
     return str;
 }
 
-
+/*
 void main()
 {
     char* index;
@@ -64,4 +64,4 @@ void main()
 
     system("pause");
     return 0;
-}
+}*/

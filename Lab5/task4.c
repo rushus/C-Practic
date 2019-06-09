@@ -19,7 +19,7 @@ void strcpy(char *dest, int len, const char *src)
 			*d = '\0';
 	}
 }
-
+/*
 void main()
 {
     const char *str = "string example";
@@ -34,4 +34,4 @@ void main()
 
     system("pause");
     return 0;
-}
+}*/

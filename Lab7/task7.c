@@ -38,7 +38,8 @@ struct Semester
 {
     int number;
     int year;
-    struct Subject subjects[20];
+	int subjectsCount;
+    struct Subject *subjects;
 };
 //Зачетка
 struct RecordBook
@@ -47,7 +48,8 @@ struct RecordBook
     char *middleName;
     char *lastName;
     int number;
-    struct Semester semesters[12];
+	int semestersCount;
+    struct Semester *semesters;
 };
 
 void printRb(const struct RecordBook *recordBook)
@@ -99,6 +101,47 @@ void printSemester(const struct Semester *semester)
     }
 }
 
+void fillSemester1(struct Semester *semester)
+{
+	*semester = { //semester 1
+		1, //sem number
+		1, //study year
+	{
+		{
+			"Physics", //name
+			test, //marktype
+	{ //mark
+		.acceptable = 1
+	},
+				 { //date
+					 .tm_mday = 17,
+					 .tm_mon = 11,
+					 .tm_year = 2017
+				 },
+		"Saveliev" //teacherln
+		},
+			   {
+				   "Math", //name
+				   exam, //marktype
+	{ //mark
+		.mark = good
+	},
+				 { //date
+					 .tm_mday = 20,
+					 .tm_mon = 0,
+					 .tm_year = 2018
+				 },
+		"Euclid" //teacherln
+			   }
+	}
+	};
+}
+
+void fillSemester2(struct Semester *semester)
+{
+
+}
+
 int main()
 {
     char *name = (char*) malloc(sizeof(char) * 50);
@@ -113,7 +156,9 @@ int main()
      "Valerievich", //middle name
      "Khusainov", //last name
      1717, //rb number
-     {
+	 2, //semestersCount
+	(struct Semester *) calloc(2, sizeof(struct Semester))
+     /*{
          { //semester 1
            1, //sem number
            1, //study year
@@ -178,8 +223,11 @@ int main()
                }
            }
          }
-     }
+     }*/
     };
+
+	fillSemester1(&recordBook.semesters[0]);
+	fillSemester2(&recordBook.semesters[1]);
 
     printf("1. Open record book\r\n2. Exit\r\n");
 	char answer = _getch();

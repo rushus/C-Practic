@@ -2,7 +2,7 @@
 #include <math.h>
 #include <stdbool.h>
 
-
+/*
 void strcpy(char *dest, int len, const char *src)
 {
 	char *d = dest;
@@ -20,7 +20,7 @@ void strcpy(char *dest, int len, const char *src)
 		if (len != 0)
 			*d = '\0';
 	}
-}
+}*/
 
 _Bool str_insert(const char *s, const char *w, int p, char *dest, int n)
 {
@@ -50,7 +50,7 @@ _Bool str_insert(const char *s, const char *w, int p, char *dest, int n)
 		*dest++ = *w++;
 	return true;
 }
-
+/*
 int main(void){
 	char  buf[50] = "";
 	char s[] = "BEGIN()END";
@@ -79,4 +79,4 @@ int main(void){
 
     system("pause");
 	return 0;
-}
+}*/

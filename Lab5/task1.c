@@ -8,7 +8,7 @@ int strlen(const char *str)
         ++size;
     return size;
 }
-
+/*
 void main()
 {
 	const char* str = "summer";
@@ -16,4 +16,4 @@ void main()
 
     system("pause");
     return 0;
-}
+}*/

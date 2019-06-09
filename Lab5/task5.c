@@ -43,7 +43,7 @@ void strcat(char *dest, int len, const char *first, const char *second)
 	}
 	*d = '\0';
 }
-
+/*
 void main()
 {
     const char *first = "calling";
@@ -59,4 +59,4 @@ void main()
 
     system("pause");
     return 0;
-}
+}*/

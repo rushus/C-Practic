@@ -24,7 +24,7 @@ char *find(const char *str, const char *substr)
     return NULL;
 }
 
-
+/*
 void main()
 {
     char* index;
@@ -37,4 +37,4 @@ void main()
 
     system("pause");
     return 0;
-}
+}*/
