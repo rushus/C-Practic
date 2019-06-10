@@ -57,8 +57,6 @@ void printRb(const struct RecordBook *recordBook)
     printf("============================\n");
     printf("FirstName: %s\nMiddleName: %s\nLastName: %s\n", recordBook->firstName, recordBook->middleName, recordBook->lastName);
     printf("RB number: %d\n\n", recordBook->number);
-    //recordBook->semesters = malloc(12*sizeof(struct));
-    //Semester->subjects = malloc(20*sizeof(struct));
 }
 
 void printSubject(const struct Subject *subject)
@@ -95,51 +93,64 @@ void printSemester(const struct Semester *semester)
     printf("Semester number: %d\nStudy year: %d\n", semester->number, semester->year);
     printf("Name | Type | Mark | Date | Teacher\n");
     printf("----------------------------\n");
-    for (int subId = 0; subId<20 && strlen(semester->subjects[subId].name); ++subId)
+    for (int subId = 0; subId < semester->subjectsCount; ++subId)
     {
         printSubject(&semester->subjects[subId]);
     }
 }
 
+void fillSubject(struct Subject *subject, const char *name, 
+	enum Marktype marktype, union Mark mark, struct tm date, 
+	const char *teacherln)
+{
+	subject->name = (char*)malloc(sizeof(char) * 50);
+	strcpy(subject->name, name);
+	subject->marktype = marktype;
+	subject->mark = mark;
+	subject->date = date;
+	subject->teacherln = (char*)malloc(sizeof(char) * 50);
+	strcpy(subject->teacherln, teacherln);
+}
+
+void freeSubject(struct Subject *subject)
+{
+	free(subject->name);
+	free(subject->teacherln);
+}
+
 void fillSemester1(struct Semester *semester)
 {
-	*semester = { //semester 1
-		1, //sem number
-		1, //study year
-	{
-		{
-			"Physics", //name
-			test, //marktype
-	{ //mark
-		.acceptable = 1
-	},
-				 { //date
-					 .tm_mday = 17,
-					 .tm_mon = 11,
-					 .tm_year = 2017
-				 },
-		"Saveliev" //teacherln
-		},
-			   {
-				   "Math", //name
-				   exam, //marktype
-	{ //mark
-		.mark = good
-	},
-				 { //date
-					 .tm_mday = 20,
-					 .tm_mon = 0,
-					 .tm_year = 2018
-				 },
-		"Euclid" //teacherln
-			   }
-	}
-	};
+	semester->number = 1;
+	semester->year = 1;
+	semester->subjectsCount = 2;
+	semester->subjects = (struct Subject *) calloc(semester->subjectsCount, sizeof(struct Subject));
+	union Mark physicsMark = {.acceptable = 1};
+	struct tm physicsDate = { .tm_mday = 17, .tm_mon = 11, .tm_year = 2017 };
+	fillSubject(&semester->subjects[0], "Physics", test, physicsMark, physicsDate, "Saveliev");
+	union Mark mathMark = { .mark = good};
+	struct tm mathDate = { .tm_mday = 20,.tm_mon = 0,.tm_year = 2018 };
+	fillSubject(&semester->subjects[1], "Math", exam, mathMark, mathDate, "Euclid");
 }
 
 void fillSemester2(struct Semester *semester)
 {
+	semester->number = 2;
+	semester->year = 1;
+	semester->subjectsCount = 2;
+	semester->subjects = (struct Subject *) calloc(semester->subjectsCount, sizeof(struct Subject));
+	union Mark historyMark = { .acceptable = 1 };
+	struct tm historyDate = { .tm_mday = 29,.tm_mon = 4,.tm_year = 2018 };
+	fillSubject(&semester->subjects[0], "History", test, historyMark, historyDate, "Karamzin");
+	union Mark philoMark = { .acceptable = 1 };
+	struct tm philoDate = { .tm_mday = 3,.tm_mon = 5,.tm_year = 2018 };
+	fillSubject(&semester->subjects[1], "Philosophy", test, philoMark, philoDate, "Aristotle");
+}
 
+void freeSemester(struct Semester *semester)
+{
+	for (int i = 0; i < semester->subjectsCount; i++)
+		freeSubject(&semester->subjects[i]);
+	free(semester->subjects);
 }
 
 int main()
@@ -158,72 +169,6 @@ int main()
      1717, //rb number
 	 2, //semestersCount
 	(struct Semester *) calloc(2, sizeof(struct Semester))
-     /*{
-         { //semester 1
-           1, //sem number
-           1, //study year
-           {
-               {
-                 "Physics", //name
-                 test, //marktype
-                 { //mark
-                    .acceptable = 1
-                 },
-                 { //date
-                     .tm_mday = 17,
-                     .tm_mon = 11,
-                     .tm_year = 2017
-                 },
-                 "Saveliev" //teacherln
-               },
-               {
-                 "Math", //name
-                 exam, //marktype
-                 { //mark
-                    .mark = good
-                 },
-                 { //date
-                     .tm_mday = 20,
-                     .tm_mon = 0,
-                     .tm_year = 2018
-                 },
-                 "Euclid" //teacherln
-               }
-           }
-         },
-         { //semester 2
-           2, //sem number
-           1, //study year
-           {
-               {
-                 "History", //name
-                 test, //marktype
-                 { //mark
-                    .acceptable = 1
-                 },
-                 { //date
-                     .tm_mday = 29,
-                     .tm_mon = 4,
-                     .tm_year = 2018
-                 },
-                 "Karamzin" //teacherln
-               },
-               {
-                 "Philosophy", //name
-                 test, //marktype
-                 { //mark
-                    .acceptable = 1
-                 },
-                 { //date
-                     .tm_mday = 3,
-                     .tm_mon = 5,
-                     .tm_year = 2018
-                 },
-                 "Aristotle" //teacherln
-               }
-           }
-         }
-     }*/
     };
 
 	fillSemester1(&recordBook.semesters[0]);
@@ -249,7 +194,9 @@ int main()
 			printf("Incorrect input.\n");
 			break;
 	}
-
+	for (int i = 0; i < recordBook.semestersCount; i++)
+		freeSemester(&recordBook.semesters[i]);
+	free(recordBook.semesters);
 	system("pause");
 	return 0;
 }
