@@ -38,20 +38,23 @@ void move(char *target, int targetLength, char *last, int lastLength)
 }
 
 
-char *delete(char *str, const char *substr)
+char *delete(const char *str, const char *substr)
 {
     char* index = find(str, substr);
     char* cc = index + strlen(substr);
-    for (int pos = 0; pos < strlen(substr); pos++)
-    {
-        index[pos] = '\0';
-    }
-    move(index, strlen(substr), cc, strlen(cc) );
-
-    char *strheap = (char*) malloc(strlen(str)*sizeof(char));
-    strcpy(strheap, str);
-
-    return strheap;
+	int destSize = strlen(str) - strlen(substr) + 1;
+	char *dest = (char *) malloc(destSize);
+	char *d = dest;
+	for (char *srcPos = str; srcPos < index; srcPos++, d++)
+	{
+		*d = *srcPos;
+	}
+	for (char *srcPos = cc; *srcPos != '\0'; srcPos++, d++)
+	{
+		*d = *srcPos;
+	}
+	*d = '\0';
+	return dest;
 }
 
 /*

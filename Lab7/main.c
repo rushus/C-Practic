@@ -49,7 +49,7 @@ void main(void)
 
 			char *dest1 = strcpy(str2);
 
-			printf("dest after copy:  \"%s\"\n", *dest1);
+			printf("dest after copy:  \"%s\"\n", dest1);
 
 			break;
 		case '5':

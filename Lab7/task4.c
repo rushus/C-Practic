@@ -4,16 +4,16 @@
 
 char *strcpy(const char *src)
 {
-	char *dest = (char*) malloc(sizeof(src));
+	char *dest = (char*) malloc(strlen(src)+1);
 	char *d = dest;
-	for (int i = 0; i < strlen(src); i++)
+	for (int i = 0; i < strlen(src) + 1; i++)
 	{
 		*d = src[i];
 		d++;
 	}
 	//while ((*dest++ = *src++) != '\0');
 
-    return d;
+    return dest;
 }
 /*
 void main()
