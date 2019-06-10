@@ -30,7 +30,7 @@ char *insert(const char *src, const char *str, int index)
 	*t++ = '\0';
 	return dest;
 }
-
+/*
 void main(){
 	const char *s = "BEGIN()END";
 
@@ -45,4 +45,4 @@ void main(){
 
     system("pause");
 	return 0;
-}
+}*/

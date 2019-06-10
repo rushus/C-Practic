@@ -10,7 +10,7 @@ char *strcpy(const char *src)
 
     return d;
 }
-
+/*
 void main()
 {
     const char *str = "string example";
@@ -23,4 +23,4 @@ void main()
 
     system("pause");
     return 0;
-}
+}*/

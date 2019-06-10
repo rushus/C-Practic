@@ -25,7 +25,7 @@ char *strcat(const char *first, const char *second)
 
 	return dest;
 }
-
+/*
 void main()
 {
     const char *first = "Calling";
@@ -39,4 +39,4 @@ void main()
 
     system("pause");
     return 0;
-}
+}*/

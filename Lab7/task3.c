@@ -54,7 +54,7 @@ char *delete(char *str, const char *substr)
     return strheap;
 }
 
-
+/*
 void main()
 {
     char* index;
@@ -71,4 +71,4 @@ void main()
 
     system("pause");
     return 0;
-}
+}*/

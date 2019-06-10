@@ -58,7 +58,7 @@ void sortHeapArray()
     }
     free(arr);
 }
-
+/*
 void main()
 {
     sortHeapArray();
@@ -66,4 +66,4 @@ void main()
 
     system("pause");
     return 0;
-}
+}*/

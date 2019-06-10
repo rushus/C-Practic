@@ -11,11 +11,11 @@ void incrementHeapVariable()
     printf("%p : %d\n", p, *p);
     free(p);
 }
-
+/*
 void main()
 {
     incrementHeapVariable();
 
     system("pause");
     return 0;
-}
+}*/
