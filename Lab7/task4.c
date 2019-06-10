@@ -6,7 +6,12 @@ char *strcpy(const char *src)
 {
 	char *dest = (char*) malloc(sizeof(src));
 	char *d = dest;
-    while ((*dest++ = *src++) != '\0');
+	for (int i = 0; i < strlen(src); i++)
+	{
+		*d = src[i];
+		d++;
+	}
+	//while ((*dest++ = *src++) != '\0');
 
     return d;
 }
